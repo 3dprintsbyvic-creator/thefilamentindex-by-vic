@@ -52,7 +52,10 @@ def main():
         print(f"No .json files in {libs_dir}/", file=sys.stderr)
         sys.exit(1)
 
-    manifest = {"source_name": args.source_name, "libraries": libraries}
+    # version=1 matches the schema used by HueForge's own vendor manifest at
+    # thehueforge/hueforge-version/filament_libraries.json. Without it, the 0.9.4
+    # client may route the manifest through a legacy/no-override code path.
+    manifest = {"version": 1, "source_name": args.source_name, "libraries": libraries}
     out_path = pathlib.Path(args.out)
     out_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"\nWrote {len(libraries)} entries to {out_path}")
