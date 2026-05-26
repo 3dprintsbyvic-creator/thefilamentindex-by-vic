@@ -1,171 +1,68 @@
-# HueForge Community Library Template
+# The Filament Index by Vic
 
-A template repository for publishers creating community filament libraries for HueForge 3D lithophane software.
+A community filament library for [HueForge](https://thehueforge.com/) 0.9.4+, published from [The Filament Index](https://3dprintsbyvic.com/filaments) — Vic's growing database of hand-verified Transmission Distance (TD) measurements across the brands HueForge users actually print with.
 
-## Quick Start
+Every entry in this library is sourced from the live Filament Index on [3dprintsbyvic.com](https://3dprintsbyvic.com/filaments). Subscribers get the same measurements Vic uses in his own prints, refreshed automatically as the Index grows.
 
-1. **Clone or fork** this template
-2. **Add your filaments** as JSON files to `libraries/`
-3. **Configure the hook** (one-time setup)
-4. **Push to GitHub** and register the manifest URL in HueForge
+## Add this source to HueForge
 
-## Repository Structure
+1. In HueForge, open **Filaments → Manage Community Sources**.
+2. Click **+ Add Source**.
+3. Paste this manifest URL:
+   ```
+   https://raw.githubusercontent.com/3dprintsbyvic-creator/thefilamentindex-by-vic/main/manifest.json
+   ```
+4. Click **OK**. HueForge fetches and verifies the manifest.
+
+Filaments appear in your **Filaments** menu under **Community → The Filament Index by Vic** with a source badge.
+
+**Auto-updates:** HueForge 0.9.4 background-checks registered manifests. Subscribe once and the data stays current as Vic adds + reverifies measurements.
+
+## What's inside
+
+- **Hand-verified TD measurements** for every entry, captured under documented conditions (nozzle temp + size + measurement method recorded against each filament).
+- **Coverage today:** Bambu Lab, Polymaker, 3D-Fuel, Overture, Prusa Research, Jessie Premium, Paramount 3D, IIID Max, Numakers, Kexcelled, Sunlu, Protopasta, Copymaster 3D, Fillamentum, eSun, Kingroon, Creality, Hatchbox, JAYO, GEETECH — anything that lands in the Filament Index lands here.
+- **Tags for fast filtering** inside HueForge — finish (matte, silk, glossy, translucent), color family, and a `verified-by-3dpbv` marker so you can find Vic's entries quickly.
+
+## Submitting a filament (PR-as-submission lane)
+
+The Filament Index accepts submissions through [the website form](https://3dprintsbyvic.com/filaments) and through pull requests against this repo. PRs work well if you have a batch of carefully-measured filaments — drop them in a `libraries/<your-brand>.json` file and open a PR.
+
+PR review checklist:
+- One filament per entry, required fields populated (`Brand`, `Color`, `Name`, `Owned: false`, `Transmissivity`, `Type`, `uuid`).
+- Fresh UUIDs — generate with `python -c "import uuid; print('{' + str(uuid.uuid4()) + '}')"`.
+- Measurement notes in the PR body (nozzle temp, nozzle size, method — TD1, TD1S, seashell, etc.).
+- One PR per brand or batch — easier review.
+
+Vic reviews and merges. Auto-merge isn't on the table — every entry that publishes under this source is something Vic stands behind.
+
+## How the data flows
+
+Base44 Filament Index (data of record) → `scripts/sync_filament_library.py` deterministic export → per-brand JSON files in `libraries/` → pre-commit hook regenerates `manifest.json` → push → HueForge subscribers auto-update.
+
+If a community PR's TD measurement conflicts with the Index, Vic's measurement wins by default (or triggers a re-measurement, his call).
+
+## Conflict priority
+
+When a HueForge user has both this source and HueForge's bundled vendor library registered, the user picks which source wins on overlap. The exact UX is still being characterized — Phase 1a (the first 10–20 filament test slice) is what tells us how it surfaces. README will be updated with the recommendation once we've seen it.
+
+## Repo structure
 
 ```
-hueforge-community-library-template/
-├── libraries/                    # Your filament library JSON files go here
-│   ├── .gitkeep
-│   ├── my-pla-filaments.json
-│   └── specialty-colors.json
-├── .githooks/
-│   └── pre-commit               # Auto-generates manifest.json on commit
-├── generate_manifest.py         # Standalone manifest generation script
-├── manifest.json                # Generated library index (don't edit manually)
+thefilamentindex-by-vic/
+├── libraries/                  # Per-brand×material JSON files
+├── .githooks/pre-commit        # Auto-regenerates manifest.json on commit
+├── generate_manifest.py        # Standalone manifest generator (from template)
+├── manifest.json               # Generated index — don't hand-edit
+├── .gitattributes              # LF normalization for SHA256 consistency
 └── README.md
 ```
 
-## Adding Filaments
-
-1. Create a `.json` filament library file in `libraries/` following HueForge's filament format
-2. The `generate_manifest.py` script will automatically discover and index it
-
-**Filament JSON format** — each file must contain a `Filaments` array where each entry has:
-
-```json
-{
-  "Filaments": [
-    {
-      "Brand": "Your Vendor PLA",
-      "Color": "#ffffff",
-      "Name": "White",
-      "Owned": false,
-      "Transmissivity": 10.0,
-      "Type": "PLA",
-      "uuid": "{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"
-    }
-  ]
-}
-```
-
-**Required fields:** `Brand`, `Color` (hex), `Name`, `Owned`, `Transmissivity`, `Type`, `uuid`
-
-**Optional fields:** `Tags` (array of strings), `Secondary_Color`, `Secondary_Strength`, `Secondary_Type` (for dual-color/silk filaments)
-
-Generate a unique UUID for each filament entry — no two filaments should share a UUID across any library.
-
-## One-Time Setup
-
-After cloning this repository, enable the auto-commit hook:
-
-```bash
-git config core.hooksPath .githooks
-```
-
-This enables automatic manifest regeneration whenever you commit changes to `libraries/`.
-
-## Configuration
-
-Edit `.githooks/pre-commit` and set:
-
-- **`SOURCE_NAME`**: The human-readable name for your collection (e.g., "Acme PLA Library")
-- **`BASE_URL`**: The raw GitHub URL to your `libraries/` folder (e.g., `https://raw.githubusercontent.com/your-username/your-repo/main/libraries`)
-
-**Do not include "HueForge" in `SOURCE_NAME`** — the community library system automatically prepends "[Unofficial]" to source names that don't contain it.
-
-### Example Configuration
-
-```bash
-# In .githooks/pre-commit:
-SOURCE_NAME="Acme Premium PLA Collection"
-BASE_URL="https://raw.githubusercontent.com/acme/hueforge-filaments/main/libraries"
-```
-
-## Generating the Manifest Manually
-
-If you prefer not to use the git hook, or for testing:
-
-```bash
-python generate_manifest.py \
-  --source-name "My PLA Collection" \
-  --base-url https://raw.githubusercontent.com/your-username/your-repo/main/libraries
-```
-
-This scans `libraries/`, counts filaments in each `.json` file, computes SHA256 checksums, and writes `manifest.json`.
-
-## Registering in HueForge
-
-1. In HueForge, open **Filaments → Manage Community Sources**
-2. Click **+ Add Source**
-3. Paste the raw manifest URL:
-   ```
-   https://raw.githubusercontent.com/your-username/your-repo/main/manifest.json
-   ```
-4. Click **OK** — HueForge will fetch and verify the manifest
-
-Your filaments now appear in the **Filaments** menu under **Community** with a badge showing your source.
-
-## Publishing Updates
-
-1. Add or modify `.json` files in `libraries/`
-2. Commit and push to GitHub
-   ```bash
-   git add libraries/
-   git commit -m "Add acme-pla-v2 library"
-   git push origin main
-   ```
-3. The pre-commit hook automatically regenerates `manifest.json`
-4. HueForge users see updates when they refresh **Manage Community Sources**
-
-## Manifest Schema
-
-`manifest.json` is auto-generated and looks like:
-
-```json
-{
-  "source_name": "My PLA Collection",
-  "libraries": [
-    {
-      "name": "my-pla-filaments",
-      "filename": "my-pla-filaments.json",
-      "category": "community",
-      "url": "https://raw.githubusercontent.com/you/repo/main/libraries/my-pla-filaments.json",
-      "sha256": "a1b2c3d4...",
-      "filament_count": 42
-    }
-  ]
-}
-```
-
-**Fields:**
-- `source_name`: Display name for your collection (from config)
-- `name`: Stem of the filename (used as library ID)
-- `category`: Always `"community"` for user-contributed libraries
-- `url`: Full download URL (auto-constructed from `--base-url`)
-- `sha256`: Integrity check over normalized line endings
-- `filament_count`: Number of filaments in that library file
-
-## Troubleshooting
-
-**"Pre-commit hook failed"**
-- Ensure Python 3 is installed and in PATH
-- Check that `generate_manifest.py` has execute permissions
-- Verify `--source-name` and `--base-url` are set in `.githooks/pre-commit`
-
-**"No .json files in libraries/"**
-- The hook requires at least one `.json` file in `libraries/` to generate a manifest
-- If starting fresh, add a minimal test file temporarily
-
-**"SHA256 mismatch" in HueForge**
-- Ensure line endings in JSON files are consistent (CRLF vs LF)
-- The script normalizes to LF before hashing; if you edit files on mixed systems, recommend `.gitattributes`:
-  ```
-  *.json text eol=lf
-  ```
-
 ## License
 
-This template is provided under the same license as HueForge (see the main HueForge repository).
+Same license as [HueForge](https://github.com/HueForge/hueforge). License text will be added here before Phase 1b ships the full Index.
 
-## Support
+## Credits
 
-For questions about filament format, integrating with HueForge, or community library architecture, refer to the [HueForge community documentation](https://github.com/HueForge/hueforge) or open an issue in the main repository.
+- **Template:** [thehueforge/hueforge-community-library-example](https://github.com/thehueforge/hueforge-community-library-example) by Steve Hardy (HueForge creator).
+- **Filament Index:** [3dprintsbyvic.com/filaments](https://3dprintsbyvic.com/filaments) — Vic's database, free to browse, deep features (Owned / Want / community measurements) live behind the Master Maker tier on [Patreon](https://patreon.com/3DPrintsByVic).

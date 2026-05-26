@@ -8,8 +8,8 @@ MANIFEST="manifest.json"
 SCRIPT="generate_manifest.py"
 
 # CONFIGURE THESE:
-SOURCE_NAME="My PLA Collection"
-BASE_URL="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/libraries"
+SOURCE_NAME="The Filament Index by Vic"
+BASE_URL="https://raw.githubusercontent.com/3dprintsbyvic-creator/thefilamentindex-by-vic/main/libraries"
 
 staged=$(git diff --cached --name-only)
 
