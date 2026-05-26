@@ -1,0 +1,200 @@
+{
+  "Filaments": [
+    {
+      "Brand": "Bambu Lab Glow",
+      "Color": "#7ac0e9",
+      "Name": "Blue",
+      "Owned": false,
+      "Transmissivity": 3.9,
+      "Type": "PLA",
+      "uuid": "{f325fb78-93fc-4eed-acb6-61e81fd123fa}",
+      "Tags": [
+        "glow",
+        "blue",
+        "verified-by-3dpbv"
+      ]
+    },
+    {
+      "Brand": "Polymaker Panchroma",
+      "Color": "#ffffee",
+      "Name": "Neon Yellow",
+      "Owned": false,
+      "Transmissivity": 6.8,
+      "Type": "PLA",
+      "uuid": "{b56ded83-db89-4d0f-8cb7-22eaa0f8308a}",
+      "Tags": [
+        "matte",
+        "white",
+        "verified-by-3dpbv"
+      ]
+    },
+    {
+      "Brand": "Bambu Lab Glow",
+      "Color": "#ff9d5b",
+      "Name": "Orange",
+      "Owned": false,
+      "Transmissivity": 5.9,
+      "Type": "PLA",
+      "uuid": "{2623ecbd-094f-4acc-a278-480531699ced}",
+      "Tags": [
+        "glow",
+        "orange",
+        "verified-by-3dpbv"
+      ]
+    },
+    {
+      "Brand": "Sunlu Meta",
+      "Color": "#fd9886",
+      "Name": "pink",
+      "Owned": false,
+      "Transmissivity": 12.0,
+      "Type": "PLA",
+      "uuid": "{afe26e72-c7b4-49a9-9e71-bf9cdeb15ffc}",
+      "Tags": [
+        "metallic",
+        "beige",
+        "verified-by-3dpbv"
+      ]
+    },
+    {
+      "Brand": "Sunlu Meta",
+      "Color": "#fd3e3e",
+      "Name": "red",
+      "Owned": false,
+      "Transmissivity": 7.0,
+      "Type": "PLA",
+      "uuid": "{0223d85d-7c28-42b3-be79-033137908b05}",
+      "Tags": [
+        "metallic",
+        "red",
+        "verified-by-3dpbv"
+      ]
+    },
+    {
+      "Brand": "Sunlu",
+      "Color": "#d5ff01",
+      "Name": "Yellow",
+      "Owned": false,
+      "Transmissivity": 10.0,
+      "Type": "PLA+",
+      "uuid": "{47672531-ef7d-4b16-bea2-45fa32b6a84d}",
+      "Tags": [
+        "glossy",
+        "beige",
+        "verified-by-3dpbv"
+      ]
+    },
+    {
+      "Brand": "Sunlu Meta",
+      "Color": "#f8ef99",
+      "Name": "yellow",
+      "Owned": false,
+      "Transmissivity": 10.0,
+      "Type": "PLA",
+      "uuid": "{92a27b6e-bdb5-4218-823a-f4e3d7aef06e}",
+      "Tags": [
+        "metallic",
+        "white",
+        "verified-by-3dpbv"
+      ]
+    },
+    {
+      "Brand": "Kexcelled",
+      "Color": "#fce300",
+      "Name": "Yellow",
+      "Owned": false,
+      "Transmissivity": 6.8,
+      "Type": "PLA",
+      "uuid": "{a54b357c-d431-5285-6f4e-68e908d5512b}",
+      "Tags": [
+        "glossy",
+        "beige",
+        "verified-by-3dpbv"
+      ]
+    },
+    {
+      "Brand": "Overture Matte",
+      "Color": "#e4bb4c",
+      "Name": "Yellow",
+      "Owned": false,
+      "Transmissivity": 3.6,
+      "Type": "PLA",
+      "uuid": "{a78be097-517a-473b-9a0e-dc86aea2ed32}",
+      "Tags": [
+        "matte",
+        "beige",
+        "verified-by-3dpbv"
+      ]
+    },
+    {
+      "Brand": "BambuLab HF",
+      "Color": "#ffd00b",
+      "Name": "Yellow",
+      "Owned": false,
+      "Transmissivity": 4.5,
+      "Type": "PETG",
+      "uuid": "{d585a8f2-eafc-4b10-80c5-9a1e380a28f3}",
+      "Tags": [
+        "glossy",
+        "beige",
+        "verified-by-3dpbv"
+      ]
+    },
+    {
+      "Brand": "Bambu Lab Basic",
+      "Color": "#fce300",
+      "Name": "Yellow",
+      "Owned": false,
+      "Transmissivity": 4.8,
+      "Type": "PLA",
+      "uuid": "{e3fddd35-33b3-48f8-8626-3ac71a502fdc}",
+      "Tags": [
+        "glossy",
+        "beige",
+        "verified-by-3dpbv"
+      ]
+    },
+    {
+      "Brand": "Jessie Premium",
+      "Color": "#efbc30",
+      "Name": "Yellow Bird",
+      "Owned": false,
+      "Transmissivity": 4.2,
+      "Type": "PETG",
+      "uuid": "{8115f48c-842e-4b38-950b-1e1d9f7a5820}",
+      "Tags": [
+        "glossy",
+        "beige",
+        "verified-by-3dpbv"
+      ]
+    },
+    {
+      "Brand": "Jessie Premium",
+      "Color": "#fdc230",
+      "Name": "Yellow Bird",
+      "Owned": false,
+      "Transmissivity": 4.0,
+      "Type": "PLA",
+      "uuid": "{ed9d0e09-8e74-46a9-8242-b107588bb6ac}",
+      "Tags": [
+        "glossy",
+        "beige",
+        "verified-by-3dpbv"
+      ]
+    },
+    {
+      "Brand": "Polylite",
+      "Color": "#ffff00",
+      "Name": "Yellow v2",
+      "Owned": false,
+      "Transmissivity": 14.3,
+      "Type": "PLA",
+      "uuid": "{d32464c3-9e23-43da-93ba-86f205820fb0}",
+      "Tags": [
+        "glossy",
+        "white",
+        "verified-by-3dpbv"
+      ]
+    }
+  ]
+}

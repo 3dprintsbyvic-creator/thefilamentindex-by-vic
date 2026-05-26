@@ -1,4 +1,13 @@
 {
-  "source_name": "My PLA Collection",
-  "libraries": []
+  "source_name": "The Filament Index by Vic",
+  "libraries": [
+    {
+      "name": "test-slice-2026-05-26",
+      "filename": "test-slice-2026-05-26.json",
+      "category": "community",
+      "url": "https://raw.githubusercontent.com/3dprintsbyvic-creator/thefilamentindex-by-vic/main/libraries/test-slice-2026-05-26.json",
+      "sha256": "7a3e036e965b94ebb420f07afa88de5996dfbe4f5ebf60d273d395b6f97b82b9",
+      "filament_count": 14
+    }
+  ]
 }
