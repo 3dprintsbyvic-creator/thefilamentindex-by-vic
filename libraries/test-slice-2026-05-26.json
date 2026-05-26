@@ -1,18 +1,13 @@
 {
-  "Filaments": [
-    {
-      "Brand": "BambuLab Basic",
-      "Color": "#fce300",
-      "Name": "Yellow",
-      "Owned": false,
-      "Transmissivity": 4.8,
-      "Type": "PETG",
-      "uuid": "{b3ed312f-817d-436d-919d-d44492273b2b}",
-      "Tags": [
-        "glossy",
-        "beige",
-        "verified-by-3dpbv"
-      ]
-    }
-  ]
+    "Filaments": [
+        {
+            "Brand": "BambuLab Basic",
+            "Color": "#fce300",
+            "Name": "Yellow",
+            "Owned": false,
+            "Transmissivity": 4.8,
+            "Type": "PETG",
+            "uuid": "{b3ed312f-817d-436d-919d-d44492273b2b}"
+        }
+    ]
 }
