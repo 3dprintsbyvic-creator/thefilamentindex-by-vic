@@ -1,14 +1,5 @@
 {
   "version": 1,
   "source_name": "The Filament Index by Vic",
-  "libraries": [
-    {
-      "name": "test-slice-2026-05-26",
-      "filename": "test-slice-2026-05-26.json",
-      "category": "community",
-      "url": "https://raw.githubusercontent.com/3dprintsbyvic-creator/thefilamentindex-by-vic/main/libraries/test-slice-2026-05-26.json",
-      "sha256": "d48184465628dc7ad3f91c4ceb4a55aa63aa05bfc126cfc31a27a93fdd0d57eb",
-      "filament_count": 1
-    }
-  ]
+  "libraries": []
 }

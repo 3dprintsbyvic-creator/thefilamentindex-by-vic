@@ -1,10 +1,14 @@
 # The Filament Index by Vic
 
-A community filament library for [HueForge](https://thehueforge.com/) 0.9.4+, published from [The Filament Index](https://3dprintsbyvic.com/filaments) — Vic's growing database of hand-verified Transmission Distance (TD) measurements across the brands HueForge users actually print with.
+> ## ⚠️ PRE-LAUNCH — this library is not populated yet
+>
+> **The manifest currently serves zero filaments.** This source goes live once HueForge 0.9.4's community-source support is broadly adopted and the first verified batch is exported from [The Filament Index](https://3dprintsbyvic.com/filaments). Until then, adding the manifest URL to HueForge gets you an empty (but valid) source. Watch this repo — everything below describes how the library **will** work at launch.
 
-Every entry in this library is sourced from the live Filament Index on [3dprintsbyvic.com](https://3dprintsbyvic.com/filaments). Subscribers get the same measurements Vic uses in his own prints, refreshed automatically as the Index grows.
+A community filament library for [HueForge](https://thehueforge.com/) 0.9.4+, to be published from [The Filament Index](https://3dprintsbyvic.com/filaments) — Vic's growing database of hand-verified Transmission Distance (TD) measurements across the brands HueForge users actually print with.
 
-## Add this source to HueForge
+Every entry in this library will be sourced from the live Filament Index on [3dprintsbyvic.com](https://3dprintsbyvic.com/filaments). Subscribers will get the same measurements Vic uses in his own prints, refreshed automatically as the Index grows.
+
+## Add this source to HueForge (at launch)
 
 1. In HueForge, open **Filaments → Manage Community Sources**.
 2. Click **+ Add Source**.
@@ -14,19 +18,19 @@ Every entry in this library is sourced from the live Filament Index on [3dprints
    ```
 4. Click **OK**. HueForge fetches and verifies the manifest.
 
-Filaments appear in your **Filaments** menu under **Community → The Filament Index by Vic** with a source badge.
+These steps will work today, but until launch the source arrives empty. At launch, filaments will appear in your **Filaments** menu under **Community → The Filament Index by Vic** with a source badge.
 
-**Auto-updates:** HueForge 0.9.4 background-checks registered manifests. Subscribe once and the data stays current as Vic adds + reverifies measurements.
+**Auto-updates:** HueForge 0.9.4 background-checks registered manifests. Subscribe once and the data will stay current as Vic adds + reverifies measurements.
 
-## What's inside
+## What's inside (at launch)
 
 - **Hand-verified TD measurements** for every entry, captured under documented conditions (nozzle temp + size + measurement method recorded against each filament).
-- **Coverage today:** Bambu Lab, Polymaker, 3D-Fuel, Overture, Prusa Research, Jessie Premium, Paramount 3D, IIID Max, Numakers, Kexcelled, Sunlu, Protopasta, Copymaster 3D, Fillamentum, eSun, Kingroon, Creality, Hatchbox, JAYO, GEETECH — anything that lands in the Filament Index lands here.
+- **Planned coverage:** Bambu Lab, Polymaker, 3D-Fuel, Overture, Prusa Research, Jessie Premium, Paramount 3D, IIID Max, Numakers, Kexcelled, Sunlu, Protopasta, Copymaster 3D, Fillamentum, eSun, Kingroon, Creality, Hatchbox, JAYO, GEETECH — anything that lands in the Filament Index will land here.
 - **Tags for fast filtering** inside HueForge — finish (matte, silk, glossy, translucent), color family, and a `verified-by-3dpbv` marker so you can find Vic's entries quickly.
 
-## Submitting a filament (PR-as-submission lane)
+## Submitting a filament (PR-as-submission lane — opens at launch)
 
-The Filament Index accepts submissions through [the website form](https://3dprintsbyvic.com/filaments) and through pull requests against this repo. PRs work well if you have a batch of carefully-measured filaments — drop them in a `libraries/<your-brand>.json` file and open a PR.
+The Filament Index will accept submissions through [the website form](https://3dprintsbyvic.com/filaments) and through pull requests against this repo. PRs work well if you have a batch of carefully-measured filaments — drop them in a `libraries/<your-brand>.json` file and open a PR.
 
 PR review checklist:
 - One filament per entry, required fields populated (`Brand`, `Color`, `Name`, `Owned: false`, `Transmissivity`, `Type`, `uuid`).
@@ -36,7 +40,7 @@ PR review checklist:
 
 Vic reviews and merges. Auto-merge isn't on the table — every entry that publishes under this source is something Vic stands behind.
 
-## How the data flows
+## How the data flows (at launch)
 
 Base44 Filament Index (data of record) → `scripts/sync_filament_library.py` deterministic export → per-brand JSON files in `libraries/` → pre-commit hook regenerates `manifest.json` → push → HueForge subscribers auto-update.
 
@@ -50,9 +54,10 @@ When a HueForge user has both this source and HueForge's bundled vendor library 
 
 ```
 thefilamentindex-by-vic/
-├── libraries/                  # Per-brand×material JSON files
+├── libraries/                  # Per-brand×material JSON files (empty until launch)
+├── _archive/                   # Superseded/test files — archived, never deleted
 ├── .githooks/pre-commit        # Auto-regenerates manifest.json on commit
-├── generate_manifest.py        # Standalone manifest generator (from template)
+├── generate_manifest.py        # Manifest generator + validation gate (--check runs its self-test)
 ├── manifest.json               # Generated index — don't hand-edit
 ├── .gitattributes              # LF normalization for SHA256 consistency
 └── README.md
